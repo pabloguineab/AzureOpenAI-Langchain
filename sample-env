@@ -1,0 +1,6 @@
+# this is a sample for keys used in this code repo. 
+# Please rename it to .env before you can use it
+OPENAI_API_KEY=
+OPENAI_API_BASE=
+OPENAI_API_TYPE=azure
+OPENAI_API_VERSION=2023-09-01-preview
