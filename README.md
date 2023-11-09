@@ -42,10 +42,10 @@ For any suggestions or improvements related to the tutorial content, please feel
 
 
 
-## Another exaple of Streamlit app **in Dark MOde! ** with a Bar Graph rendering 
+## Another exaple of Streamlit app *in Dark Mode!* with a Bar Graph rendering 
 
 
-<img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="200" />
+<img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="500" />
 
 
 
