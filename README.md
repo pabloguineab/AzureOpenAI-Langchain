@@ -30,7 +30,9 @@ To install the repository, follow these steps:
 To use the application, execute the `Talk_with_CSV.py` file using the Streamlit CLI. Make sure you have Streamlit installed before running the application. Run the following command in your terminal:
 
 ```
-streamlit run main.py
+streamlit Talk_with_CSV.py
+
+
 ```
 ## Contributing
 This repository is intended for educational purposes only and is not designed to accept external contributions. It serves as supplemental material for the YouTube tutorial, demonstrating how to build the project.
