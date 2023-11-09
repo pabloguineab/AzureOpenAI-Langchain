@@ -8,9 +8,9 @@ The goal of this python app is to incorporate Azure OpenAI GPT4 with Langchain C
 
 ## How it works
 
-The application reads the CSV file and processes the data. It utilizes OpenAI LLMs alongside with Langchain Agents in order to answer your questions. The CSV agent then uses tools to find solutions to your questions and generates an appropriate response with the help of a LLM.
+The app reads the CSV file and processes the data. It utilizes OpenAI LLMs alongside with Langchain Agents in order to answer your questions. The CSV agent then uses tools to find solutions to your questions and generates an appropriate response with the help of a LLM.
 
-The application employs Streamlit to create the graphical user interface (GUI) and utilizes Langchain to interact with the LLM.
+The app uses Streamlit to create the graphical user interface (GUI) and uses Langchain to interact with the LLM.
 
 ## Installation
 
@@ -50,7 +50,9 @@ For any suggestions or improvements related to the tutorial content, please feel
 <img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="500" />
 
 
+## TODO
 
+- Add Docker instructions
 
 
 
