@@ -1,7 +1,6 @@
-# Langchain Chat-CSV with OpenAI (Tutorial)
-> You can find the step-by-step video tutorial to build this application [on YouTube](https://youtu.be/tjeti5vXWOU).
+# AzureOpenAI-Langchain-Talk-with-CSV (Tutorial)
 
-This is a Python application that enables you to load a CSV file and ask questions about its contents using natural language. The application leverages Language Models (LLMs) to generate responses based on the CSV data. The LLM will only provide answers related to the information present in the CSV.
+The goal of this python app is to incorporate Azure OpenAI GPT4 with Langchain CSV and Pandas agents to allow a user to query the CSV and get answers in in text, linge graphs or bar charts.  It uses Streamlit as the UI.  Well, because everyone wants to see the LLM's at work!
 
 ## How it works
 
@@ -20,11 +19,11 @@ To install the repository, follow these steps:
    pip install -r requirements.txt
    ```
 
-3. Additionally, you need to obtain an OpenAI API key and add it to the `.env` file.
+3. Additionally, you need to obtain an OpenAI API key and add it to the `.env` file.  A sample `.env` is provided.  Change the ending to have it work
 
 ## Usage
 
-To use the application, execute the `main.py` file using the Streamlit CLI. Make sure you have Streamlit installed before running the application. Run the following command in your terminal:
+To use the application, execute the `Talk_with_CSV.py` file using the Streamlit CLI. Make sure you have Streamlit installed before running the application. Run the following command in your terminal:
 
 ```
 streamlit run main.py
@@ -34,4 +33,4 @@ streamlit run main.py
 This repository is intended for educational purposes only and is not designed to accept external contributions. It serves as supplemental material for the YouTube tutorial, demonstrating how to build the project.
 
 For any suggestions or improvements related to the tutorial content, please feel free to reach out through the YouTube channel's comment section.
-# AzureOpenAI-Langchain-Talk-with-CSV
+
