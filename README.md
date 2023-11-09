@@ -1,4 +1,7 @@
-# AzureOpenAI-Langchain-Talk-with-CSV (Tutorial)
+![image](https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/0ae4c709-ee39-4213-8956-76b8e044396f)
+
+
+# AzureOpenAI Langchain Talk with a CSV (Tutorial)
 
 The goal of this python app is to incorporate Azure OpenAI GPT4 with Langchain CSV and Pandas agents to allow a user to query the CSV and get answers in in text, linge graphs or bar charts.  It uses Streamlit as the UI.  Well, because everyone wants to see the LLM's at work!
 
@@ -28,6 +31,9 @@ To use the application, execute the `Talk_with_CSV.py` file using the Streamlit 
 ```
 streamlit run main.py
 ```
+
+![CSV to graph](https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52)
+
 
 ## Contributing
 This repository is intended for educational purposes only and is not designed to accept external contributions. It serves as supplemental material for the YouTube tutorial, demonstrating how to build the project.
