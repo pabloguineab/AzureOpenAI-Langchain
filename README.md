@@ -2,7 +2,7 @@
 
 
 
-# AzureOpenAI Langchain Talk with a CSV (Tutorial)
+# AzureOpenAI + Langchain Agents! + Streamlit == A *Talk with a CSV* App
 
 The goal of this python app is to incorporate Azure OpenAI GPT4 with Langchain CSV and Pandas agents to allow a user to query the CSV and get answers in in text, linge graphs or bar charts.  It uses Streamlit as the UI.  Well, because everyone wants to see the LLM's at work!
 
@@ -25,26 +25,37 @@ To install the repository, follow these steps:
 
 3. Additionally, you need to obtain an OpenAI API key and add it to the `.env` file.  A sample `.env` is provided.  Change the ending to have it work
 
-## Usage
+## TO Run on Local
 
 To use the application, execute the `Talk_with_CSV.py` file using the Streamlit CLI. Make sure you have Streamlit installed before running the application. Run the following command in your terminal:
 
 ```
 streamlit run Talk_with_CSV.py
 
-
 ```
+
+## To Run Using Docker Container
+
+Make sure you have Docker installed. I am using WSL2 on Windows and the global instal for Docker worked fine.  Then start the DOcker Daemon by opening the application.  Next check you Docker on in the linux terminal. 
+```
+docker images
+```
+You should see an output. That's a great start!  Next build the Docker container
+```
+docker build -t talktocsv:latest ./
+```
+That will take a few minutes to install and should be about 1.2GB. To run the container use either the image name or conatiner ID (which you can find in the output from the build or running hte images command).
+```
+docker run talktocsv:latest
+```
+Streamlit defaults to port 8501.  Always use the localhost:8501  url in the browser.  
+
 ## Contributing
-This repository is intended for educational purposes only and is not designed to accept external contributions. It serves as supplemental material for the YouTube tutorial, demonstrating how to build the project.
-
-For any suggestions or improvements related to the tutorial content, please feel free to reach out through the YouTube channel's comment section.
+This repository is intended for educational purposes only and is not designed to accept external contributions. For any suggestions or improvements related to the tutorial content, please feel free to reach out through the YouTube channel's comment section.
 
 
 
-
-
-
-## Another exaple of Streamlit app *in Dark Mode!* with a Bar Graph rendering 
+## An example of Streamlit app *in Dark Mode!* with a Bar Graph 
 
 
 <img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="500" />
@@ -52,7 +63,7 @@ For any suggestions or improvements related to the tutorial content, please feel
 
 ## TODO
 
-- Add Docker instructions
+- Add instructions for using Azure Container Registries and Azure webapps 
 
 
 
