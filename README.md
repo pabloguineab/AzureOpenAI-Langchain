@@ -2,8 +2,7 @@
 
 
 
-# AzureOpenAI + Langchain Agents! + Streamlit ==
-##          *Talk with a CSV* App
+# AzureOpenAI + Langchain Agents! + Streamlit ==  *Talk with a CSV* App
 
 The goal of this python app is to incorporate Azure OpenAI GPT4 with Langchain CSV and Pandas agents to allow a user to query the CSV and get answers in in text, linge graphs or bar charts.  It uses Streamlit as the UI.  Well, because everyone wants to see the LLM's at work!
 
@@ -59,7 +58,7 @@ This repository is intended for educational purposes only and is not designed to
 ## Example of Streamlit app *in Dark Mode!* with a Bar Graph 
 
 
-<img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="600" height="600 />
+<img src="https://github.com/SirRacha/AzureOpenAI-Langchain-Talk-with-CSV/assets/31993629/64ec2cd5-a214-466d-b29e-34441900fe52" width="600" />
 
 
 ## TODO
