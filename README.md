@@ -36,7 +36,7 @@ streamlit run Talk_with_CSV.py
 
 ## Run Using Docker Container
 
-Make sure you have Docker installed. I am using WSL2 on Windows and the global instal for Docker worked fine.  Then start the DOcker Daemon by opening the application.  Next check you Docker on in the linux terminal. 
+Make sure you have Docker installed. I am using WSL2 on Windows and the global instal for Docker worked fine.  Then start the Docker Daemon by opening the application.  Next check you Docker on in the linux terminal. 
 ```
 docker images
 ```
