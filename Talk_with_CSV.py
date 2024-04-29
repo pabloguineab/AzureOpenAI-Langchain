@@ -84,19 +84,17 @@ def ask_agent(agent, query):
     return str(response)
 
 def decode_response(response: str) -> dict:
-    """This function converts the string response from the model to a dictionary object.
-
-    Args:
-        response (str): response from the model
-
-    Returns:
-        dict: dictionary with response data
     """
-    ### ADDED this loop to overcome the false Dictionaries load/loads creates!  ####
-    if type(response) == str:
-        return json.loads(response)
-    else:
-        return response
+    This function converts the string response from the model to a dictionary object.
+    Handles cases where the response might include multiple JSON objects by parsing only the first one.
+    """
+    try:
+        if response and isinstance(response, str):
+            json_objects = response.split('\n')
+            return json.loads(json_objects[0])
+    except json.JSONDecodeError as e:
+        print("Failed to decode JSON:", e)
+        return {}
 
 
 def write_answer(response_dict: dict):
