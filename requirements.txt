@@ -1,5 +1,5 @@
 streamlit
-langchain==0.0.330
+langchain
 langchain-experimental==0.0.37
 tqdm
 tiktoken==0.3.3
