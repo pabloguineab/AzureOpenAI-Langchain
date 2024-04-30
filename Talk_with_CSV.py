@@ -136,46 +136,22 @@ def json_tool(json_data):
     return create_pandas_dataframe_agent(llm, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
 
 def ask_agent(agent, query):
-    prompt = (
-        """
-        Let's decode the way to respond to the queries. The responses depend on the type of information requested in the query.
-        1. If the query requires a table, format your answer like this:
-           {"table": {"columns": ["column1", "column2", ...], "data": [[value1, value2, ...], [value1, value2, ...], ...]}}
-        2. For a bar chart, respond like this:
-           {"bar": {"columns": ["A", "B", "C", ...], "data": [25, 24, 10, ...]}}
-        3. If a line chart is more appropriate, your reply should look like this:
-           {"line": {"columns": ["A", "B", "C", ...], "data": [25, 24, 10, ...]}}
-        4. For a plain question that doesn't need a chart or table, your response should be:
-           {"answer": "Your answer goes here"}
-        5. If the answer is not known or available, respond with:
-           {"answer": "I do not know."}
-        """ + query
-    )
+    prompt = f"Please generate a detailed explanation based on the following query: {query}"
     response = agent.run(prompt)
     return response
 
 def decode_response(response: str) -> dict:
     if type(response) == str:
-        return json.loads(response)
+        try:
+            return json.loads(response)
+        except json.JSONDecodeError:
+            return {"answer": response}
     else:
-        return response
+        return {"answer": response}
 
 def write_answer(response_dict: dict):
     if "answer" in response_dict:
         st.write(response_dict["answer"])
-    if "bar" in response_dict:
-        data = response_dict["bar"]
-        df = pd.DataFrame(data['data'], columns=data['columns'])
-        st.bar_chart(df)
-    if "line" in response_dict:
-        data = response_dict["line"]
-        df = pd.DataFrame(data['data'], columns=data['columns'])
-        df.set_index(data['columns'][0], inplace=True)
-        st.line_chart(df)
-    if "table" in response_dict:
-        data = response_dict["table"]
-        df = pd.DataFrame(data['data'], columns=data['columns'])
-        st.table(df)
 
 st.set_page_config(page_title="👨‍💻 Talk with your JSON Data", layout="wide")
 st.title("👨‍💻 Talk with your JSON Data & Pandas DataFrame!")
