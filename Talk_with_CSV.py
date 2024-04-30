@@ -135,43 +135,47 @@ def json_tool(json_data):
     df.rename(columns=diccionario_datos, inplace=True)
     return create_pandas_dataframe_agent(llm, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
 
-def ask_agent(agent, query):
-    # Se utiliza una cadena de consulta dinámica que involucra todos los campos posibles.
-    fields_description = ', '.join([f"'{desc}'" for key, desc in diccionario_datos.items()])
-    prompt = f"Given a dataset with fields such as {fields_description}, describe the content based on the query: {query}"
+def obtener_datos_cliente(nombre_cliente):
+    url = "https://des-apps.azucarera.es/sugar/gptbot/buscar_cliente"
+    headers = {
+        "key": "azutoken",  # Asegúrate que estos headers son correctos
+        "azutoken": "QXp1Y2FyZXJhTGFWaWRhU2FiZU1lam9ySGByYXY="  # El token real aquí
+    }
+    payload = {"nombre_cliente": nombre_cliente}
+    response = requests.post(url, headers=headers, json=payload)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Error en la API: {response.status_code}, {response.text}")
+
+def ask_agent(agent, json_data, query):
+    df = pd.DataFrame(json_data)
+    df.rename(columns=diccionario_datos, inplace=True)
+    agent = create_pandas_dataframe_agent(agent, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
+    prompt = f"Based on the client data: {query}"
     response = agent.run(prompt)
     return response
 
-def decode_response(response: str) -> dict:
-    if type(response) == str:
-        try:
-            return json.loads(response)
-        except json.JSONDecodeError:
-            return {"answer": response}
-    else:
-        return {"answer": response}
+st.set_page_config(page_title="👨‍💻 Client Data Inquiry", layout="wide")
+st.title("👨‍💻 Client Data Inquiry!")
 
-def write_answer(response_dict: dict):
-    if "answer" in response_dict:
-        st.write(response_dict["answer"])
-
-st.set_page_config(page_title="👨‍💻 Talk with your JSON Data", layout="wide")
-st.title("👨‍💻 Talk with your JSON Data & Pandas DataFrame!")
-
-st.write("Please upload your JSON file below.")
-data = st.file_uploader("Upload a JSON", type=["json"])
-query = st.text_area("Send a Message")
+st.write("Enter the name of the client and your query below.")
+client_name = st.text_input("Client Name")
+query = st.text_area("Your Query")
 
 if st.button("Submit Query"):
-    if data is not None:
-        file_data = data.getvalue().decode('utf-8')
+    if client_name:
         try:
-            json_data = json.loads(file_data)
-            agent = json_tool(json_data)
-            response = ask_agent(agent=agent, query=query)
-            decoded_response = decode_response(response)
-            write_answer(decoded_response)
-        except json.JSONDecodeError:
-            st.error("JSON decoding failed. Please check the file content.")
+            json_data = obtener_datos_cliente(client_name)
+            llm = AzureChatOpenAI(
+                openai_api_key=os.getenv("OPENAI_API_KEY"),
+                openai_api_base=os.getenv("OPENAI_API_BASE"),
+                deployment_name=os.getenv("DEPLOYMENT_NAME"),
+                openai_api_version="2023-09-01-preview", temperature=0)
+            response = ask_agent(llm, json_data, query)
+            decoded_response = json.loads(response)
+            st.write(decoded_response)
+        except Exception as e:
+            st.error(f"An error occurred: {e}")
     else:
-        st.error("Please upload a JSON file to continue.")
+        st.error("Please enter the client name.")
