@@ -139,15 +139,18 @@ def json_tool(json_data):
 def obtener_datos_cliente(nombre_cliente):
     url = "https://des-apps.azucarera.es/sugar/gptbot/buscar_cliente"
     headers = {
-        "key": "azutoken",  # Asegúrate que estos headers son correctos
+        "key": "azutoken",  # Asegúrate de que estos headers son correctos
         "azutoken": "QXp1Y2FyZXJhTGFWaWRhU2FiZU1lam9ySGByYXY="  # El token real aquí
     }
     payload = {"nombre_cliente": nombre_cliente}
     response = requests.post(url, headers=headers, json=payload)
+    print("Response Status Code:", response.status_code)  # Verifica el código de estado
+    print("Response Body:", response.text)  # Imprime el cuerpo de la respuesta
     if response.status_code == 200:
         return response.json()
     else:
         raise Exception(f"Error en la API: {response.status_code}, {response.text}")
+
 
 def ask_agent(agent, json_data, query):
     df = pd.DataFrame(json_data)
