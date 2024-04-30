@@ -11,6 +11,7 @@ from langchain.agents.agent_types import AgentType
 from langchain.chat_models.azure_openai import AzureChatOpenAI
 #from langchain.tools.python.tool import PythonREPLTool 
 #import matplotlib
+import requests
 #import openai
 from dotenv import load_dotenv
 import os
