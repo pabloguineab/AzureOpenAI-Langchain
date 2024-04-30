@@ -136,7 +136,9 @@ def json_tool(json_data):
     return create_pandas_dataframe_agent(llm, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
 
 def ask_agent(agent, query):
-    prompt = f"Describe the contents of each record for the fields 'Mandante', 'Sector', and 'Número de cliente' from the dataset based on this query: {query}"
+    # Se utiliza una cadena de consulta dinámica que involucra todos los campos posibles.
+    fields_description = ', '.join([f"'{desc}'" for key, desc in diccionario_datos.items()])
+    prompt = f"Given a dataset with fields such as {fields_description}, describe the content based on the query: {query}"
     response = agent.run(prompt)
     return response
 
