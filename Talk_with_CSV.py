@@ -171,15 +171,19 @@ if st.button("Submit Query"):
     if client_name:
         try:
             json_data = obtener_datos_cliente(client_name)
-            llm = AzureChatOpenAI(
-                openai_api_key=os.getenv("OPENAI_API_KEY"),
-                openai_api_base=os.getenv("OPENAI_API_BASE"),
-                deployment_name=os.getenv("DEPLOYMENT_NAME"),
-                openai_api_version="2023-09-01-preview", temperature=0)
-            response = ask_agent(llm, json_data, query)
-            decoded_response = json.loads(response)
-            st.write(decoded_response)
+            if json_data:  # Verifica que json_data no esté vacío
+                llm = AzureChatOpenAI(
+                    openai_api_key=os.getenv("OPENAI_API_KEY"),
+                    openai_api_base=os.getenv("OPENAI_API_BASE"),
+                    deployment_name=os.getenv("DEPLOYMENT_NAME"),
+                    openai_api_version="2023-09-01-preview", temperature=0)
+                response = ask_agent(llm, json_data, query)
+                decoded_response = json.loads(response)
+                st.write(decoded_response)
+            else:
+                st.error("La respuesta de la API está vacía.")
         except Exception as e:
             st.error(f"An error occurred: {e}")
     else:
         st.error("Please enter the client name.")
+
