@@ -125,19 +125,17 @@ diccionario_datos = {
 }
 
 #openai.chat.completions.create()
-def json_tool(filename: str):
+def json_tool(json_data):
     llm = AzureChatOpenAI(
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         openai_api_base=os.getenv("OPENAI_API_BASE"),
         deployment_name=os.getenv("DEPLOYMENT_NAME"),
         openai_api_version="2023-09-01-preview", temperature=0)
-    # Lectura del archivo JSON
-    data = json.load(filename)
-    df = pd.DataFrame(data)
-    
+    df = pd.DataFrame(json_data)
+
     # Renombrar las columnas usando el diccionario de datos
     df.rename(columns=diccionario_datos, inplace=True)
-    
+
     return create_pandas_dataframe_agent(llm, df, verbose=True, agent_type=AgentType.OPENAI_FUNCTIONS)
 
 
@@ -199,11 +197,8 @@ def ask_agent(agent, query):
         + query
     )
 
-    # Run the prompt through the agent and capture the response.
-    response = agent.run(prompt)
-
-    # Return the response converted to a string.
-    return str(response)
+    response = agent.run(query)
+    return response
 
 def decode_response(response: str) -> dict:
     """This function converts the string response from the model to a dictionary object.
@@ -280,7 +275,7 @@ query = st.text_area("Send a Message")
 if st.button("Submit Query"):
     if data is not None:
         file_data = data.getvalue().decode('utf-8')
-        json_data = json.loads(file_data)  # Asegúrate de convertir los datos del archivo a JSON
+        json_data = json.loads(file_data)  # Convertir los datos del archivo a JSON
         agent = json_tool(json_data)
         response = ask_agent(agent=agent, query=query)
         decoded_response = decode_response(response)
